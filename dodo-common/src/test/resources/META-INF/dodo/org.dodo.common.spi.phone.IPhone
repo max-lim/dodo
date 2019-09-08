@@ -1,0 +1,4 @@
+vivo=org.dodo.common.spi.phone.impl.VivoPhone
+oppo=org.dodo.common.spi.phone.impl.OppoPhone
+diy=org.dodo.common.spi.phone.impl.DiyPhoneWrapper
+diy2=org.dodo.common.spi.phone.impl.DiyPhone2Wrapper

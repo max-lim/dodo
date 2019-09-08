@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dodo="http://rpc.dodo.org/schema/dodo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://rpc.dodo.org/schema/dodo  http://rpc.dodo.org/schema/dodo.xsd">
+
+    <dodo:app name="test"/>
+    <dodo:register address="127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183" name="zookeeper" attachment="zk" connectTimeout="30000"
+       retryInterval="1000" retryTimes="20" sessionTimeout="120000"/>
+    <dodo:consumer name="echo-consumer" cluster="failover" serialization="protostuff" loadBalance="roundrobin" reflect="javassist"/>
+    <dodo:filters includes="statistics" parameters=""/>
+    <dodo:reference name="org.dodo.withspring.EchoService"/>
+</beans>

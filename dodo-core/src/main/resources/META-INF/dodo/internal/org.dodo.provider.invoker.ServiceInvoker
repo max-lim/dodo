@@ -1,0 +1,2 @@
+javassist=org.dodo.provider.invoker.JavassistServiceInvoker
+jdk=org.dodo.provider.invoker.JDKServiceInvoker

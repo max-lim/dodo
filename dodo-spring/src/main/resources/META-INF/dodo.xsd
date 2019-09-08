@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://rpc.dodo.org/schema/dodo"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tool="http://www.springframework.org/schema/tool"
+            xmlns:beans="http://www.springframework.org/schema/beans"
+            targetNamespace="http://rpc.dodo.org/schema/dodo">
+
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.springframework.org/schema/tool"/>
+    <xsd:import namespace="http://www.springframework.org/schema/beans"/>
+
+    <xsd:complexType name="abstractConfig">
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element ref="beans:property" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+        <xsd:anyAttribute namespace="##other" processContents="lax"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="AppConfigBeanType">
+        <xsd:attribute name="name" type="xsd:string" use="required">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ app name ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="packages" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ scan classes of the packages. the name of packages join by ',' ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+    <xsd:element name="app" type="AppConfigBeanType">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[ app config ]]></xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="abstractConsumerConfigBean">
+        <xsd:attribute name="name" type="xsd:string" use="required">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ app name ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="reflect" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ reflection mode of interfaces ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="serialization" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ serialization of rpc message ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="cluster" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ cluster invoke mode of rpc ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="loadBalance" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ load balance of remote service nodes ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="loadBalanceParameters" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ parameters of load balance ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+    <xsd:element name="consumer" type="abstractConsumerConfigBean">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[ consumer global config ]]></xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="abstractFiltersConfigBean">
+        <xsd:attribute name="name" type="xsd:string" use="optional" default="filter"/>
+        <xsd:attribute name="includes" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ filter names join by ',' ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="parameters" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ key=value parameters join by ';' ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+    <xsd:element name="filters" type="abstractFiltersConfigBean">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[ config which filters included and config their parameters ]]></xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="abstractProviderServerConfigBean">
+        <xsd:attribute name="name" type="xsd:string" use="optional" default="default">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="protocol" type="xsd:string" use="optional" default="dodo">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="ip" type="xsd:string" use="required">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ server ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="port" type="xsd:int" use="required">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ server ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="corePoolSize" type="xsd:int" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ thread ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="maxPoolSize" type="xsd:int" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ thread ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="workQueueSize" type="xsd:int" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ thread queue ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="accepts" type="xsd:int" use="optional" default="10000">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="serialization" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="isDefault" type="xsd:boolean" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+    <xsd:complexType name="abstractProviderConfigBean">
+        <xsd:complexContent>
+            <xsd:extension base="abstractProviderServerConfigBean">
+                <xsd:attribute name="reflect" type="xsd:string" use="optional">
+                    <xsd:annotation>
+                        <xsd:documentation><![CDATA[ reflection mode of invoke service ]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="attachment" type="xsd:string" use="optional">
+                    <xsd:annotation>
+                        <xsd:documentation><![CDATA[ user-defined parameters  ]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="provider" type="abstractProviderConfigBean">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[ provider ]]></xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="server" type="abstractProviderServerConfigBean">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[ provider ]]></xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="abstractReferenceConfig">
+        <xsd:complexContent>
+            <xsd:extension base="abstractConfig">
+                <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                    <xsd:element ref="method" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="beans:property" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:choice>
+                <xsd:attribute name="id" type="xsd:ID"/>
+                <xsd:attribute name="name" type="xsd:string" use="required">
+                    <xsd:annotation>
+                        <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="retry" type="xsd:int" use="optional" default="3">
+                    <xsd:annotation>
+                        <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="timeout" type="xsd:int" use="optional" default="1500">
+                    <xsd:annotation>
+                        <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="cluster" type="xsd:string" use="optional">
+                    <xsd:annotation>
+                        <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="loadBalance" type="xsd:string" use="optional">
+                    <xsd:annotation>
+                        <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="loadBalanceParameters" type="xsd:string" use="optional">
+                    <xsd:annotation>
+                        <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="method">
+        <xsd:complexType>
+            <xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+            <xsd:attribute name="ref" type="xsd:string" use="required"></xsd:attribute>
+            <xsd:attribute name="onResponse" type="xsd:string" use="optional"></xsd:attribute>
+            <xsd:attribute name="onException" type="xsd:string" use="optional"></xsd:attribute>
+            <xsd:attribute name="onMock" type="xsd:string" use="optional"></xsd:attribute>
+            <xsd:attribute name="forceMock" type="xsd:boolean" use="optional" default="false"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="reference" type="abstractReferenceConfig">
+
+    </xsd:element>
+    <xsd:complexType name="abstractRegisterConfigBean">
+        <xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+        <xsd:attribute name="address" type="xsd:string" use="required">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ join by ',' ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="connectTimeout" type="xsd:int" use="optional" default="15000">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ milliseconds ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="sessionTimeout" type="xsd:int" use="optional" default="120000">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ milliseconds ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="retryInterval" type="xsd:int" use="optional" default="500">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ milliseconds ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="retryTimes" type="xsd:int" use="optional" default="25">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ milliseconds ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="attachment" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ consumers will be get this attachment parameters ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+    <xsd:element name="register" type="abstractRegisterConfigBean">
+
+    </xsd:element>
+    <xsd:complexType name="abstractServiceConfigBean">
+        <xsd:complexContent>
+            <xsd:extension base="abstractConfig">
+                <xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+                <xsd:attribute name="ref" type="xsd:string" use="required"/>
+                <xsd:attribute name="retry" type="xsd:int" use="optional" default="3"/>
+                <xsd:attribute name="timeout" type="xsd:int" use="optional" default="1500"/>
+                <xsd:attribute name="group" type="xsd:string" use="optional"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="service" type="abstractServiceConfigBean">
+
+    </xsd:element>
+
+</xsd:schema>

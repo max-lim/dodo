@@ -1,0 +1,2 @@
+jdk=org.dodo.consumer.reflect.JDKReflectHandler
+javassist=org.dodo.consumer.reflect.JavassistReflectHandler

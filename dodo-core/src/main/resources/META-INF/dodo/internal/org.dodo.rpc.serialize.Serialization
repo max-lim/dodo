@@ -1,0 +1,3 @@
+protostuff=org.dodo.rpc.serialize.ProtostuffSerialization
+fst=org.dodo.rpc.serialize.FSTSerialization
+json=org.dodo.rpc.serialize.JSONSerialization

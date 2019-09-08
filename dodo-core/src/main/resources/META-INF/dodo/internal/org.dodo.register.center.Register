@@ -1,0 +1,2 @@
+zookeeper=org.dodo.register.center.ZookeeperRegistry
+local4test=org.dodo.register.center.Local4TestRegister

@@ -1,0 +1,2 @@
+default=org.dodo.provider.invoker.DefaultInvoker
+wrapper=org.dodo.provider.invoker.InvokerWrapper

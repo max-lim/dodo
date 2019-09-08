@@ -1,0 +1,7 @@
+mock=org.dodo.consumer.filter.MockFilter
+statistics=org.dodo.consumer.filter.StatisticsFilter
+consumer-trace=org.dodo.consumer.filter.ConsumerTraceFilter
+rate-limit=org.dodo.provider.filter.RateLimitFilter
+token-rate-limit=org.dodo.provider.filter.TokenRateLimitFilter
+access-log=org.dodo.provider.filter.AccessLogFilter
+provider-trace=org.dodo.provider.filter.ProviderTraceFilter

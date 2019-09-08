@@ -1,0 +1,8 @@
+test=org.dodo.filter.TestFront1Filter
+test2=org.dodo.filter.TestFront2Filter
+test3=org.dodo.filter.TestPost1Filter
+test4=org.dodo.filter.TestPost2Filter
+test11=org.dodo.provider.invoker.TestFront1Filter
+test12=org.dodo.provider.invoker.TestFront2Filter
+test13=org.dodo.provider.invoker.TestPost1Filter
+test14=org.dodo.provider.invoker.TestPost2Filter

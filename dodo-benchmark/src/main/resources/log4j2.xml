@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" monitorInterval="30">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d %p %class{1.} [%t] %location %m %ex%n</Pattern>
+            </PatternLayout>
+        </Console>
+        <RandomAccessFile name="access-appender" fileName="access.log" immediateFlush="false" append="false">
+            <PatternLayout>
+                <Pattern>%m%n</Pattern>
+            </PatternLayout>
+        </RandomAccessFile>
+        <RandomAccessFile name="stat-appender" fileName="stat.log" immediateFlush="false" append="false">
+            <PatternLayout>
+                <Pattern>%m%n</Pattern>
+            </PatternLayout>
+        </RandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info" additivity="false">
+            <AppenderRef ref="console" />
+        </Root>
+        <AsyncLogger name="access" level="trace" includeLocation="false" additivity="false">
+            <AppenderRef ref="access-appender"/>
+        </AsyncLogger>
+        <AsyncLogger name="stat" level="trace" includeLocation="false" additivity="false">
+            <AppenderRef ref="stat-appender"/>
+        </AsyncLogger>
+    </Loggers>
+</Configuration>

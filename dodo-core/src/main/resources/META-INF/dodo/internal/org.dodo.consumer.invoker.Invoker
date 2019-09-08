@@ -1,0 +1,5 @@
+failfast=org.dodo.consumer.cluster.strategy.FailfastClusterInvoker
+failover=org.dodo.consumer.cluster.strategy.FailoverClusterInvoker
+failsafe=org.dodo.consumer.cluster.strategy.FailsafeClusterInvoker
+failback=org.dodo.consumer.cluster.strategy.FailbackClusterInvoker
+wrapper=org.dodo.consumer.invoker.InvokerWrapper

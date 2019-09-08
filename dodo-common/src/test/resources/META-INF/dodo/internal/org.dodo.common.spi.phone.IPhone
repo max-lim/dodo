@@ -1,0 +1,2 @@
+huawei=org.dodo.common.spi.phone.impl.HuaweiPhone
+mi=org.dodo.common.spi.phone.impl.MIPhone

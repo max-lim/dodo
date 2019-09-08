@@ -1,0 +1,4 @@
+random=org.dodo.consumer.cluster.loadbalance.RandomLoadBalance
+roundrobin=org.dodo.consumer.cluster.loadbalance.RoundRobinLoadBalance
+weighted-response-time=org.dodo.consumer.cluster.loadbalance.WeightedResponseTimeLoadBalance
+consistent-hashing=org.dodo.consumer.cluster.loadbalance.ConsistentHashingLoadBalance
