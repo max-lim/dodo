@@ -18,4 +18,5 @@ dodo-rpc致力于成为代码清晰简洁、高性能的rpc框架
 配置中心 | N | nacos
 注册中心 | zookeeper/local4test | nacos
 协议 | dodo | grpc/restful/http2
+熔断 | N | Sentinel/Resilience4j/Hystrix等
 治理中心 | N | api/ui
