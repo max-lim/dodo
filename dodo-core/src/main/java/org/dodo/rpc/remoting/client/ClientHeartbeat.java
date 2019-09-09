@@ -60,6 +60,8 @@ public class ClientHeartbeat implements TimerTask, Closeable {
 				if(logger.isDebugEnabled()) {
 					logger.debug("pong timeout and retry to connect {}", client.toString());
 				}
+				receivedPongAt = 0;
+				sentAt = 0;
 				client.connect(true);
 				return;
 			}
@@ -69,7 +71,7 @@ public class ClientHeartbeat implements TimerTask, Closeable {
 			if(logger.isDebugEnabled()) {
 				logger.debug("connection is closed and retry to connect {}", client.toString());
 			}
-			client.connect(true);
+			client.connect();
 		}
 	}
 	public void ping() {
